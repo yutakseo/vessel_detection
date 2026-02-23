@@ -1,0 +1,31 @@
+services:
+  detector:
+    image: vessel-ultralytics:local
+    build:
+      context: .
+      dockerfile: Detector/Dockerfile
+
+    container_name: vessel-ultralytics
+    working_dir: /workspace
+    shm_size: "64gb"
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: ["gpu"]
+
+    environment:
+      - LANG=ko_KR.UTF-8
+      - LC_ALL=ko_KR.UTF-8
+      - LANGUAGE=ko_KR:ko
+      - YOLO_CONFIG_DIR=/workspace/.ultralytics
+      - ULTRALYTICS_SETTINGS=/workspace/.ultralytics/settings.yaml
+      - MPLCONFIGDIR=/workspace/.cache/matplotlib
+
+    volumes:
+      - /mnt/data2/DATASETS/135.해상_객체_이미지:/workspace/datasets
+
+    command: ["-lc", "sleep infinity"]
