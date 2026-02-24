@@ -1,7 +1,7 @@
 #syntax=docker/dockerfile:1
 FROM ultralytics/ultralytics:latest
 
-WORKDIR /workspace
+WORKDIR /workspace/models
 
 # 시스템 패키지 + 로케일(한글 경로/출력용)
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && locale-gen \
     && rm -rf /var/lib/apt/lists/ \
     && pip install --no-cache-dir ipykernel
-    
+
 # UTF-8 로케일 설정
 ENV LANG=ko_KR.UTF-8 \
     LC_ALL=ko_KR.UTF-8 \

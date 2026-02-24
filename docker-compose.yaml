@@ -26,7 +26,7 @@ services:
       - MPLCONFIGDIR=/workspace/.cache/matplotlib
 
     volumes:
-      - /home/yutak/workspace/vessel_detection/Detector/models:/workspace/
+      - /home/yutak/workspace/vessel_detection/Detector/models:/workspace/models
       - /mnt/data2/DATASETS/135.해상_객체_이미지:/workspace/datasets
       #https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&dataSetSn=175 데이터셋 URL
     command: ["-lc", "sleep infinity"]
